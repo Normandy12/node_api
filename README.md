@@ -31,6 +31,8 @@ $ npx sequelize-cli db:migrate
 
 Run the server
 
+The server will run on localhost:3000 by default
+
 ```
 $ node server.js
 ```
@@ -48,6 +50,11 @@ $ node server.js
 /authenticate - POST - Authenticate given username and password
 ```
 
+###### Example
+```
+http://localhost:3000/users
+http://localhost:3000/users/3
+```
 
 
 ## For Developer 
