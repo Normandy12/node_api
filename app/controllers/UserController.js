@@ -42,7 +42,7 @@ module.exports = function(model) {
                 let value = req.body;
                 console.debug(value);
                 await model.create(value)
-                res.json('Success')
+                res.status(201).json('Success')
             } catch(e) {
                 console.error(e);
                 res.status(500).json('Something went wrong')
