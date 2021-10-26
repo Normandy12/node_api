@@ -6,7 +6,7 @@
 let generateUsers = count => {
     var users = []
 
-    for(let i = 0; i <= count; i++){
+    for(let i = 1; i <= count; i++){
         users.push({
             first_name: faker.name.firstName(),
             last_name: faker.name.lastName(),
