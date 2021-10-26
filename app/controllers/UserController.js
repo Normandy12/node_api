@@ -104,6 +104,23 @@ module.exports = function(model) {
                 console.error(e);
                 res.status(500).json('Something went wrong');
             }
+       },
+
+       authenticate: async function(req, res) {
+           // This logic is for the sake of exam only
+            try {
+                let user = await model.findOne({
+                    where: {
+                        username: req.body.username,
+                        password: req.body.password
+                    }
+                })
+
+                res.json(user!=null);
+            } catch(e) {
+                console.error(e);
+                res.status(500).json('Something went wrong');
+            }
        }
     }
 }
