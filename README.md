@@ -42,7 +42,7 @@ $ node server.js
               - POST - Create new user
               - DELETE - Bulk delete all users in the given list of IDs
            
-/user/<id>    - GET - Fetch a specific user
+/users/<id>    - GET - Fetch a specific user
               - PUT - Update a user
               - DELETE - Delete a user
 /authenticate - POST - Authenticate given username and password
