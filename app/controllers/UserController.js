@@ -16,7 +16,7 @@ module.exports = function(model) {
 
             } catch (e){
                 console.error(e)
-                res.status(500).json('Something whent wrong');
+                res.status(500).json('Something went wrong');
             }
         },
 
@@ -33,13 +33,19 @@ module.exports = function(model) {
 
             } catch (e) {
                 console.error(e)
-                res.status(500).json('Something when wrong');
+                res.status(500).json('Something went wrong');
             }
         },
 
         create_user: async function(req, res) {
             try {
+                let value = req.body;
+                console.log(value);
+                await model.create(value)
+                res.json('Success')
             } catch(e) {
+                console.error(e);
+                res.status(500).json('Something went wrong')
             }
         },
 
