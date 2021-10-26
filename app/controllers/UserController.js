@@ -24,7 +24,7 @@ module.exports = function(model) {
             try{
                 let user = await model.findByPk(req.params.userId)
 
-                console.log(user);
+                console.debug(user);
                 if(user){
                     res.json(user)
                 } else {
@@ -40,7 +40,7 @@ module.exports = function(model) {
         create_user: async function(req, res) {
             try {
                 let value = req.body;
-                console.log(value);
+                console.debug(value);
                 await model.create(value)
                 res.json('Success')
             } catch(e) {
@@ -51,17 +51,59 @@ module.exports = function(model) {
 
         update_user: async function(req, res) {
             try {
-
+                let value = req.body;
+                console.debug(value);
+                let user =  await model.findByPk(req.params.userId)
+                await user.update(value)
+                res.json('Success')
             } catch(e) {
+                console.error(e);
+                res.status(500).json('Something went wrong')
             }
         },
 
         delete_user: async function(req, res) {
             try {
+                let value = req.body;
+                console.debug(value);
+                let count = await model.destroy({ 
+                    where: {
+                        id: req.params.userId
+                    }
+                });
+
+                if(count == 0){
+                    res.status(400).json('Invalid request');
+                } else {
+                    res.json('Success');
+                }
             } catch(e) {
+                console.error(e);
+                res.status(500).json('Something went wrong')
             }
-        }
+        },
 
+       bulk_delete_users: async function(req, res) {
+            try {
+                let ids = req.body.id
+                console.log(req.body);
+
+                let count = await model.destroy({
+                    where: {
+                        id: ids,
+                    }
+                });
+
+                if(count == 0){
+                    res.status(400).json('Invalid request');
+                } else {
+                    res.json('Success');
+                }
+
+            } catch(e) {
+                console.error(e);
+                res.status(500).json('Something went wrong');
+            }
+       }
     }
-
 }
